@@ -38,11 +38,10 @@ fun CustomComponent(
     canvasSize : Dp = 300.dp,
     indicatorValue : Int = 0,
     maxIndicatorValue:Int = 100,
-    backgroundIndicatorColor: Color = MaterialTheme.colorScheme.background,
+    backgroundIndicatorColor: Color = Color.Gray,
     backgroundIndicatorStrokeWith:Float = 100f,
     foregroundIndicatorColor: Color = Color.Blue,
     foregroundIndicatorStrokeWith:Float = 100f,
-    indicatorStrokeCap : StrokeCap = StrokeCap.Round,
     bigTextFontSize: TextUnit = MaterialTheme.typography.headlineLarge.fontSize,
     bigTextColor: Color = MaterialTheme.colorScheme.onSurface,
     bigTExtSuffix: String = "GB",
@@ -92,15 +91,13 @@ fun CustomComponent(
             backgroundIndicator(
                 componentSize = componentSize,
                 indicatorColor = backgroundIndicatorColor,
-                indicatorStrokeWith = backgroundIndicatorStrokeWith,
-                indicatorStrokeCap = indicatorStrokeCap
+                indicatorStrokeWith = backgroundIndicatorStrokeWith
             )
             foregroundIndicator(
                 sweepAngle = sweepAngle,
                 componentSize = componentSize,
                 indicatorColor = foregroundIndicatorColor,
-                indicatorStrokeWith = foregroundIndicatorStrokeWith,
-                indicatorStrokeCap = indicatorStrokeCap
+                indicatorStrokeWith = foregroundIndicatorStrokeWith
             )
         }, verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
@@ -120,8 +117,7 @@ fun CustomComponent(
 fun DrawScope.backgroundIndicator(
     componentSize: Size,
     indicatorColor: Color,
-    indicatorStrokeWith: Float,
-    indicatorStrokeCap: StrokeCap
+    indicatorStrokeWith: Float
 ){
     drawArc(
         size = componentSize,
@@ -131,7 +127,7 @@ fun DrawScope.backgroundIndicator(
         useCenter = false,
         style = Stroke(
             width = indicatorStrokeWith,
-            cap = indicatorStrokeCap
+            cap = StrokeCap.Round
         ),
         topLeft = Offset(
             x = (size.width - componentSize.width) / 2f,
@@ -144,8 +140,7 @@ fun DrawScope.foregroundIndicator(
     sweepAngle:Float,
     componentSize: Size,
     indicatorColor: Color,
-    indicatorStrokeWith: Float,
-    indicatorStrokeCap: StrokeCap
+    indicatorStrokeWith: Float
 ){
     drawArc(
         size = componentSize,
@@ -155,7 +150,7 @@ fun DrawScope.foregroundIndicator(
         useCenter = false,
         style = Stroke(
             width = indicatorStrokeWith,
-            cap = indicatorStrokeCap
+            cap = StrokeCap.Round
         ),
         topLeft = Offset(
             x = (size.width - componentSize.width) / 2f,
@@ -191,7 +186,7 @@ fun EmbeddedElement(
 }
 
 @Composable
-@Preview
+@Preview (showBackground = true)
 fun CustomComponentPreview(){
     CustomComponent()
 }

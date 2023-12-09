@@ -49,8 +49,8 @@ fun Greeting() {
 
     var value by remember { mutableStateOf(0) }
 
-    Column (horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,modifier = Modifier.background(Color.Cyan)){
+    Column (modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center){
 
         CustomComponent(indicatorValue = value)
 
@@ -62,6 +62,7 @@ fun Greeting() {
                 }else{
                     0
                 }
+
         }, keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Number)
         )
